@@ -14,7 +14,7 @@
 
   - name: Perform apt update & Install basic packages
     shell: apt update && apt install -y unzip jq net-tools stress 
-    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "22.04")
+    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "24.04")
     timeout: 30
     tags:
      - tools
@@ -24,14 +24,14 @@
       name: nginx
       state: latest
       update_cache: yes
-    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "22.04")
+    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "24.04")
     timeout: 30
 
   - name: Start Nginx Service
     service:
       name: nginx
       state: started
-    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "22.04")
+    when: (nginx_output.rc != 0 and ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "24.04")
   tags:
   - nginx
 
@@ -61,7 +61,7 @@
     - /tmp/nginxfiles/aboutus.html
     - /tmp/nginxfiles/contact.html
     - /tmp/nginxfiles/orders.html
-    when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "22.04")
+    when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_version'] == "24.04")
 
 - name: Download & Install Terraform Latest Version
   hosts: testserver01:testserver02:testserver03
