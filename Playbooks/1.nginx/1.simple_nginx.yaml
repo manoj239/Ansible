@@ -3,6 +3,10 @@
   gather_facts: yes
   become: yes
   become_user: root
+  vars:
+   nginx_port: 80
+   version: 1.0.0
+   t_version: 1.9.8
   tasks:
   - name: Perform Apt update
     shell: apt update
@@ -11,8 +15,10 @@
     shell: apt install -y nginx
     tags:
     - nginx_install
+    - install_nginx
   - name: Start nginx webserver
     shell: service nginx start 
+    tags: [service_install, install_service]
   tags:
   - nginx
   
