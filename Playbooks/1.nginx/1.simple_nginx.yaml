@@ -14,7 +14,7 @@
   - name: Start nginx webserver
     shell: service nginx start 
   tags:
-  - nginx_install
+  - nginx
   
 - name: InstallSupport tools
   hosts: pub
