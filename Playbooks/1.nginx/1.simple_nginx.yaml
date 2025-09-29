@@ -14,6 +14,11 @@
     ignore_errors: yes
     tags: [check]
 
+  - name: Print return information from the previous task 
+    debug:
+      var: nginx_status_output
+      verbosity: 3
+      
   - name: Perform Apt update
     shell: apt update
     when: nginx_status_output.rc !=0
