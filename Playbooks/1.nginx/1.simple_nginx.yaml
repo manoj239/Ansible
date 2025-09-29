@@ -8,8 +8,15 @@
    version: 1.0.0
    t_version: 1.9.8
   tasks:
+  - name: Check nginx status
+    shell: nginx -v
+    register: nginx_status_output
+    ignore_errors: yes
+    tags: [check]
+
   - name: Perform Apt update
     shell: apt update
+    when: nginx_status_output.rc !=0
 
   - name: Install nginx webserver
     shell: apt install -y nginx
@@ -18,10 +25,10 @@
     - install_nginx
   - name: Start nginx webserver
     shell: service nginx start 
+    when: nginx_status_output.rc !=0
     tags: [service_install, install_service]
   tags:
-  - nginx
-  
+  - nginx  
 - name: InstallSupport tools
   hosts: pub
   become: yes
