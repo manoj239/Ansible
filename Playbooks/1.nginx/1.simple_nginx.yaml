@@ -9,10 +9,13 @@
 
   - name: Install nginx webserver
     shell: apt install -y nginx
-
+    tags:
+    - nginx_install
   - name: Start nginx webserver
     shell: service nginx start 
-
+  tags:
+  - nginx_install
+  
 - name: InstallSupport tools
   hosts: pub
   become: yes
@@ -20,3 +23,7 @@
   tasks:
   - name: InstallSupport tools
     shell: apt install -y net-tools jq tree unzip
+    tags:
+    - tools_install
+  tags:
+  - tools
