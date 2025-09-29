@@ -1,6 +1,8 @@
 - name: Install Nginx on webservers 1 2 3
   hosts: pvt
   gather_facts: yes
+  become: yes
+  become_user: root
   tasks:
   - name: Perform Apt update
     shell: apt update
@@ -13,6 +15,8 @@
 
 - name: InstallSupport tools
   hosts: pub
+  become: yes
+  become_user: root
   tasks:
   - name: InstallSupport tools
     shell: apt install -y net-tools jq tree unzip
