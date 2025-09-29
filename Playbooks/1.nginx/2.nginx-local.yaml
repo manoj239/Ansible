@@ -14,10 +14,11 @@
   - name: Print Variable
     debug:
      msg: System {{ inventory_hostname }} has variable {{ AWS_ACCOUNT }} and {{ OS_DIST }} {{ OS_DIST_VERSION }}
-
+    tags: [var]
   - name: Print Variable Sensitive
     debug:
      msg: System {{ inventory_hostname }} has variable {{ AWS_ACCOUNT }} and {{ OS_DIST }} {{ OS_DIST_VERSION }}
+    tags: [var]
     no_log: True
 
   - name: Check Nginx Exists
