@@ -1,0 +1,18 @@
+- name: Install Nginx on webservers 1 2 3
+  hosts: pvt
+  gather_facts: yes
+  tasks:
+  - name: Perform Apt update
+    shell: apt update
+
+  - name: Install nginx webserver
+    shell: apt install -y nginx
+
+  - name: Start nginx webserver
+    shell: service nginx start 
+
+- name: InstallSupport tools
+  hosts: pub
+  tasks:
+  - name: InstallSupport tools
+    shell: apt install -y net-tools jq tree unzip

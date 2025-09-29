@@ -12,3 +12,4 @@ resource "local_file" "ansible-inventory-file" {
   )
   filename = "${path.module}/invfile"
 }
+
