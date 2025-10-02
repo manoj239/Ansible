@@ -18,9 +18,9 @@
       shell: ifconfig
     - name: Check if AWS Exists - BLOCK
       shell: aws --version
-    - name: Check if Packer Exists - BLOCK
+    - name: Check if Packer Exists - BLOCKkl/
       shell: packer version
-    when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'    
+    when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'    
  
     # Rescue tasks execute if any of the block task fails in above section.
     rescue:
