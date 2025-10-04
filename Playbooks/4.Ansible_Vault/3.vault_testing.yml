@@ -70,7 +70,7 @@
            path: /etc/ssh/sshd_config
            regexp: '^#?PasswordAuthentication\s+yes'
            #insertafter: '^#PasswordAuthentication yes'
-           line: PasswordAuthentication yes
+           line: 'PasswordAuthentication yes'
            backup: yes
          notify:
          -  Restart SSH Service
