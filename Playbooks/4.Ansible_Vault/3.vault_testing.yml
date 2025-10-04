@@ -9,11 +9,11 @@
     vars:
       user_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          31643462343166366563656332363735613439343866316438353834643063653036313166386637
-          3961376465366666623063313932653461393437613636650a303463323432616533303934326133
-          36623230613365646133663236663032646562663834356436353966333039353364333130373464
-          6261356463393038620a393734353161623434323236393065633539383934303137613436663865
-          6435
+          63653664306330383933353831616433366330656331643261643661393138323237616262366432
+          3565313964336565306337613135323339313134383931310a376465313936663739663761333163
+          63396530653234663161323565333138356163376164396232363032343333393832323135313339
+          3032616336333039390a303931313232623534663138633462636234343739303565346464613166
+          38663336386365663730393466326661303639336561666433356165363034613762
     tasks:
        - name: Create .aws folder
          shell: mkdir -p /root/.aws
@@ -74,13 +74,13 @@
            backup: yes
          notify:
          -  Restart SSH Service
-       - name: Remove Include line, valid for Ubuntu 22.04
+       - name: Remove Include line, valid for Ubuntu 24.04
          ansible.builtin.lineinfile:
            path: /etc/ssh/sshd_config
            state: absent
            regexp: '^Include'
            backup: yes
-         when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '22.04'
+         when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'
          notify:
          -  Restart SSH Service
        - name: Insert/Update "Match User" configuration block in /etc/ssh/sshd_config prepending and appending a new line
