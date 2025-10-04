@@ -95,4 +95,4 @@
              #SREEHARSHA
     handlers:
       - name: Restart SSH Service
-        shell: service sshd restart
+        shell: service ssh restart
