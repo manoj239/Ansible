@@ -49,7 +49,7 @@
          debug:
           var: vpcs
        - name: Install passlib
-         shell: apt install -y python3-pip && pip3 install passlib        
+         shell: apt install -y python3-pip && pip3 install --break-system-packages passlib        
        - name: Creating admin "{{item}}"
          user:
            name: "{{item}}"
