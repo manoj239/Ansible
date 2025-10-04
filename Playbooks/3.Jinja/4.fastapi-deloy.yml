@@ -18,11 +18,14 @@
 
     - name: Install FastAPI Dependencies
       shell: >
-        pip3 install -r /tmp/fastapi/requirements.txt
+        #pip3 install -r /tmp/fastapi/requirements.txt
+        pip3 install --break-system-packages -r /tmp/fastapi/requirements.txt
+
 
     - name: Stop Existing FastAPI Application
       shell: >
-        ps -ef | grep uvicorn | grep -v grep | awk '{print $2}' | xargs kill -9
+        #ps -ef | grep uvicorn | grep -v grep | awk '{print $2}' | xargs kill -9
+        pgrep -f "uvicorn" && pkill -9 -f "uvicorn" || echo "No uvicorn process running"
       ignore_errors: yes
       
     - name: Run FastAPI Application
