@@ -68,8 +68,8 @@
        - name: Replace Password Authentication To Yes
          ansible.builtin.lineinfile:
            path: /etc/ssh/sshd_config
-           regexp: '^#PasswordAuthentication yes'
-           insertafter: '^#PasswordAuthentication yes'
+           regexp: '^#?PasswordAuthentication\s+yes'
+           #insertafter: '^#PasswordAuthentication yes'
            line: PasswordAuthentication yes
            backup: yes
          notify:
