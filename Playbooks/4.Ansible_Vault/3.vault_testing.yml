@@ -9,11 +9,11 @@
     vars:
       user_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          63653664306330383933353831616433366330656331643261643661393138323237616262366432
-          3565313964336565306337613135323339313134383931310a376465313936663739663761333163
-          63396530653234663161323565333138356163376164396232363032343333393832323135313339
-          3032616336333039390a303931313232623534663138633462636234343739303565346464613166
-          38663336386365663730393466326661303639336561666433356165363034613762
+          36373766303762363763393733366565353838306262376266313235356435376233626136383137
+          3839373930396534373635383437303865353331373130310a626331643737623463636537363935
+          62616137333561363730306339643736383561396464366136633535353163343761343162336162
+          6264393036366339370a376637316664643133316663633564613932323963653264653937663934
+          66363036653162643066623137366162363430396637323837353534313161633533
     tasks:
        - name: Create .aws folder
          shell: mkdir -p /root/.aws
@@ -49,7 +49,7 @@
          debug:
           var: vpcs
        - name: Install passlib
-         shell: apt install -y python3-pip && pip3 install --break-system-packages passlib        
+         shell: apt install -y python3-passlib        
        - name: Creating admin "{{item}}"
          user:
            name: "{{item}}"
@@ -68,8 +68,8 @@
        - name: Replace Password Authentication To Yes
          ansible.builtin.lineinfile:
            path: /etc/ssh/sshd_config
-           regexp: '^#?\s*PasswordAuthentication\s+'
-           #insertafter: '^#PasswordAuthentication yes'
+           regexp: '^PasswordAuthentication no'
+           insertafter: '^#PasswordAuthentication yes'
            line: 'PasswordAuthentication yes'
            state: present
            backup: yes
