@@ -30,7 +30,7 @@
         shell: |
            curl -L -O https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.12.2-amd64.deb
            sudo dpkg -i elastic-agent-8.12.2-amd64.deb
-        
+           #
            sudo systemctl enable elastic-agent 
            sudo systemctl start elastic-agent
         when: ansible_distribution == 'Ubuntu' and ansible_distribution_version == '24.04'    
