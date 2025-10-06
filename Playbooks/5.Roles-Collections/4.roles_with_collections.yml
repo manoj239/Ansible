@@ -41,19 +41,19 @@
          name: superstar
          state: present
          login_user: root
-         login_password: "{{ mysql_root_password_new }}"
+         login_password: "{{ mysql_root_password }}"
       - name: Create a new database with name 'megastar'
         community.mysql.mysql_db: #Module Part of mysql Collection
          name: megastar
          state: present
          login_user: root
-         login_password: "{{ mysql_root_password_new }}"
+         login_password: "{{ mysql_root_password }}"
       - name: Create a multiple Databases with name myflixdb rebelstar powerstar
         community.mysql.mysql_db: #Module Part of mysql Collection
          name: "{{ item }}"
          state: present
          login_user: root
-         login_password: "{{ mysql_root_password_new }}"
+         login_password: "{{ mysql_root_password }}"
         with_items:
         - rebelstar
         - powerstar
