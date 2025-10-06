@@ -15,7 +15,8 @@
     become_user: root
     roles:
      - geerlingguy.mysql #Role not part of Collection
-     - nginxinc.nginx_core.nginx #Role Part of nginxinc.nginx_core
+     - nginx #Role Part of nginxinc.nginx_core
+
     collections:
       - community.mysql
       - nginxinc.nginx_core
