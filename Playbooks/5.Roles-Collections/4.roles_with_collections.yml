@@ -22,11 +22,11 @@
     vars:
      bob_db_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
-          32383539383436316537636665626235303061323932653335636662373632663963373862306234
-          6165636565663461323532396536623935366230613238380a386534353334623861643366663734
-          66656139633233326135386562326635626136323434316635663866316432393731646234343333
-          3837303835633864360a663661346666623633353865326538313330386232306438636431623861
-          3835
+          38383463633530366163646461653531323732363264383034363231636365643963343766393437
+          3933663132316164366664613031643534646261383665340a316535326538623330303264373330
+          66646562326464623430633737613538663163613432346666326135366631636337376232623064
+          3633383638346531640a303763313631373963346532663761326466316437363733393232666265
+          3832
      mysql_root_password_new: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           33303166626365393134356436366430386565633365613431633863393366353164386566626335
@@ -47,13 +47,17 @@
          state: present
          login_user: root
          login_password: "{{ mysql_root_password_new }}"
-      - name: Create a new database with name 'myflixdb'
+      - name: Create a multiple Databases with name myflixdb rebelstar powerstar
         community.mysql.mysql_db: #Module Part of mysql Collection
-         name: myflixdb
+         name: "{{ item }}"
          state: present
          login_user: root
          login_password: "{{ mysql_root_password_new }}"
-      - name: check if Databases
+        with_items:
+        - rebelstar
+        - powerstar
+        - myflixdb
+      - name: check if Databases are Created
         shell: mysql -e 'SHOW DATABASES;'
         register: dblist
 
@@ -78,8 +82,12 @@
          password: "{{ bob_db_password }}"
          priv: '*.*:ALL'
          state: present
-      - name: Import file.sql to myflixdb
-        shell: mysql -u root myflixdb < /tmp/myflixdb.sql
+      - name: Import file.sql to myflixdb rebelstar powerstar
+        shell: mysql -u root "{{ item }}" < /tmp/myflixdb.sql
+        with_items:
+        - rebelstar
+        - powerstar
+        - myflixdb  
       - name: Import file.sql to superstar
         shell: mysql -u root superstar < /tmp/superstardb.sql
       - name: Import file.sql to megastardb
