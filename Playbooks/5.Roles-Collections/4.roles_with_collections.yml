@@ -55,8 +55,8 @@
          login_user: root
          login_password: "{{ mysql_root_password }}"
         with_items:
-        - rebelstar
-        - powerstar
+        - rebelstar 
+        - powerstar 
         - myflixdb
       - name: check if Databases are Created
         shell: mysql -e 'SHOW DATABASES;'
@@ -76,6 +76,7 @@
         - myflixdb.sql
         - superstardb.sql
         - megastardb.sql
+        - generic.sql 
 
       - name: Create database user with name 'bob' and password from vault' with all database privileges
         community.mysql.mysql_user:
@@ -84,10 +85,10 @@
          priv: '*.*:ALL'
          state: present
       - name: Import file.sql to myflixdb rebelstar powerstar
-        shell: mysql -u root "{{ item }}" < /tmp/myflixdb.sql
+        shell: mysql -u root "{{ item }}" < /tmp/generic.sql
         with_items:
-        - rebelstar
-        - powerstar
+        - rebelstar 
+        - powerstar 
         - myflixdb  
       - name: Import file.sql to superstar
         shell: mysql -u root superstar < /tmp/superstardb.sql
